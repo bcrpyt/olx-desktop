@@ -1,10 +1,16 @@
 const { contextBridge, ipcRenderer } = require('electron');
 
-contextBridge.exposeInMainWorld('electronAPI', {
-  sendMessage: (channel, data) => ipcRenderer.send(channel, data),
-  onMessage: (channel, func) => {
-    const subscription = (event, ...args) => func(...args);
-    ipcRenderer.on(channel, subscription);
-    return () => ipcRenderer.removeListener(channel, subscription);
+contextBridge.exposeInMainWorld('api', {
+  send: (channel, data) => {
+    ipcRenderer.send(channel, data);
+  },
+  sendMessage: (channel, data) => { // Alias for compatibility with frontend
+    ipcRenderer.send(channel, data);
+  },
+  receive: (channel, callback) => {
+    ipcRenderer.on(channel, (_event, ...args) => callback(...args));
+  },
+  receiveOnce: (channel, callback) => {
+    ipcRenderer.once(channel, (_event, ...args) => callback(...args));
   }
 });

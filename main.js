@@ -2,68 +2,21 @@ const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
 const OLXScraper = require('./olx-scraper');
 
-// Enable more verbose logging
-require('electron-debug')({ showDevTools: true });
+let currentPage = 1;
 
 function createWindow() {
-  const mainWindow = new BrowserWindow({
-    width: 1600,
-    height: 1000,
+  const win = new BrowserWindow({
+    width: 1280,
+    height: 800,
     webPreferences: {
-      nodeIntegration: false,
+      preload: path.join(__dirname, 'preload.js'),
       contextIsolation: true,
-      preload: path.join(__dirname, 'preload.js')
+      nodeIntegration: false
     }
   });
 
-  mainWindow.loadFile('index.html');
-  
-  // Always open DevTools for debugging
-  mainWindow.webContents.openDevTools({ mode: 'detach' });
+  win.loadFile('index.html');
 }
-
-// Detailed logging for scraping process
-ipcMain.handle('scrape-olx', async (event) => {
-  console.log('===== SCRAPING PROCESS STARTED =====');
-  console.log('Timestamp:', new Date().toISOString());
-  
-  try {
-    console.log('Instantiating OLX Scraper...');
-    const scraper = new OLXScraper();
-    
-    console.log('Initiating scrapeHomePage() method...');
-    const result = await scraper.scrapeHomePage();
-    
-    console.log('===== SCRAPING RESULT =====');
-    console.log('Result type:', typeof result);
-    console.log('Result keys:', result ? Object.keys(result) : 'No keys (null/undefined)');
-    console.log('Detailed result:', JSON.stringify(result, null, 2));
-
-    // Ensure we always return a consistent response
-    if (!result) {
-      console.error('CRITICAL: No result returned from scraper');
-      return { 
-        error: true, 
-        message: 'No result returned from scraper',
-        type: 'EmptyResult'
-      };
-    }
-
-    return result;
-  } catch (error) {
-    console.error('===== CATASTROPHIC SCRAPING ERROR =====');
-    console.error('Error name:', error.name);
-    console.error('Error message:', error.message);
-    console.error('Error stack:', error.stack);
-    
-    return { 
-      error: true, 
-      message: error.message || 'Unknown scraping error',
-      type: error.constructor.name,
-      stack: error.stack
-    };
-  }
-});
 
 app.whenReady().then(() => {
   createWindow();
@@ -75,4 +28,28 @@ app.whenReady().then(() => {
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') app.quit();
+});
+
+// Handle initial scrape
+ipcMain.on('fetch-home-ads', async (event) => {
+  try {
+    currentPage = 1;
+    const scraper = new OLXScraper();
+    const ads = await scraper.scrapeHomePage({ page: currentPage });
+    event.reply('home-ads-result', ads);
+  } catch (error) {
+    event.reply('home-ads-result', { error: true, message: error.message });
+  }
+});
+
+// Handle Load More
+ipcMain.on('fetch-more-ads', async (event) => {
+  try {
+    currentPage++;
+    const scraper = new OLXScraper();
+    const ads = await scraper.scrapeHomePage({ page: currentPage });
+    event.reply('more-ads-result', ads);
+  } catch (error) {
+    event.reply('more-ads-result', { error: true, message: error.message });
+  }
 });
