@@ -1,12 +1,11 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
-const axios = require('axios');
-const cheerio = require('cheerio');
+const OLXScraper = require('./olx-scraper');
 
 function createWindow() {
   const mainWindow = new BrowserWindow({
-    width: 1200,
-    height: 800,
+    width: 1600,
+    height: 1000,
     webPreferences: {
       nodeIntegration: false,
       contextIsolation: true,
@@ -15,37 +14,27 @@ function createWindow() {
   });
 
   mainWindow.loadFile('index.html');
-  mainWindow.webContents.openDevTools();
+  mainWindow.webContents.openDevTools({ mode: 'detach' });
 }
 
-async function scrapeOLX() {
+ipcMain.handle('scrape-olx', async (event) => {
+  console.log('Scraping process initiated in main process');
   try {
-    const response = await axios.get('https://www.olx.ba');
-    const $ = cheerio.load(response.data);
-    const ads = [];
-
-    $('.product-item').each((index, element) => {
-      const title = $(element).find('.title').text().trim();
-      const price = $(element).find('.price').text().trim();
-      const imageUrl = $(element).find('img').attr('src');
-
-      ads.push({
-        id: index + 1,
-        title,
-        price,
-        imageUrl: imageUrl ? `https://www.olx.ba${imageUrl}` : null
-      });
-    });
-
-    return ads;
+    const scraper = new OLXScraper();
+    console.log('OLX Scraper instantiated');
+    
+    const result = await scraper.scrapeHomePage();
+    console.log('Scraping completed, result:', result);
+    
+    return result;
   } catch (error) {
-    console.error('Scraping error:', error);
-    return [];
+    console.error('CATASTROPHIC SCRAPING ERROR:', error);
+    return { 
+      error: true, 
+      message: error.message,
+      fullError: error
+    };
   }
-}
-
-ipcMain.handle('scrape-olx', async () => {
-  return await scrapeOLX();
 });
 
 app.whenReady().then(() => {
