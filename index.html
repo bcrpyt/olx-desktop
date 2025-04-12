@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OLX Desktop</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- App Header -->
+    <header class="app-header">
+      <div class="header-left">
+        <div class="logo">
+          <img src="assets/images/olx-logo-dark.svg" alt="OLX" class="logo-img">
+        </div>
+        <nav class="main-nav">
+          <ul class="nav-list">
+            <li class="nav-item active"><a href="#">Početna</a></li>
+            <li class="nav-item"><a href="#">Kategorije</a></li>
+            <li class="nav-item"><a href="#">Shopovi</a></li>
+            <li class="nav-item"><a href="#">Marketing</a></li>
+            <li class="nav-item"><a href="#">Blog</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="header-right">
+        <button class="btn btn-login">Prijavi se</button>
+        <button class="btn btn-register">Registracija</button>
+        <button class="btn btn-primary post-ad-btn">Objavi oglas</button>
+      </div>
+    </header>
+
+    <!-- Search Section -->
+    <div class="search-container">
+      <div class="search-box">
+        <input type="text" id="search-input" placeholder="Pretraga">
+        <button class="search-button" id="search-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Categories Section -->
+    <div class="categories-container">
+      <div class="categories-grid">
+        <div class="category-item">
+          <div class="category-icon vehicles">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="7" cy="17" r="2"></circle>
+              <circle cx="17" cy="17" r="2"></circle>
+              <path d="M5 9h14l-1.8 8H6.8L5 9z"></path>
+              <path d="M3 17h2"></path>
+              <path d="M19 17h2"></path>
+            </svg>
+          </div>
+          <div class="category-label">Vozila</div>
+        </div>
+        <div class="category-item">
+          <div class="category-icon real-estate">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+          </div>
+          <div class="category-label">Nekretnine</div>
+        </div>
+        <div class="category-item">
+          <div class="category-icon services">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+            </svg>
+          </div>
+          <div class="category-label">Servisi i usluge</div>
+        </div>
+        <div class="category-item">
+          <div class="category-icon jobs">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+              <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+            </svg>
+          </div>
+          <div class="category-label">Poslovi</div>
+        </div>
+        <div class="category-item">
+          <div class="category-icon car-parts">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M12 6v6l4 2"></path>
+            </svg>
+          </div>
+          <div class="category-label">Dijelovi za vozila</div>
+        </div>
+        <div class="category-item">
+          <div class="category-icon mobile">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+              <line x1="12" y1="18" x2="12" y2="18"></line>
+            </svg>
+          </div>
+          <div class="category-label">Mobilni uređaji</div>
+        </div>
+        <div class="category-item">
+          <div class="category-icon computers">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+              <line x1="8" y1="21" x2="16" y2="21"></line>
+              <line x1="12" y1="17" x2="12" y2="21"></line>
+            </svg>
+          </div>
+          <div class="category-label">Kompjuteri</div>
+        </div>
+        <div class="category-item">
+          <div class="category-icon tech">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 12H2"></path>
+              <path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"></path>
+              <path d="M6 16h.01"></path>
+              <path d="M10 16h.01"></path>
+            </svg>
+          </div>
+          <div class="category-label">Tehnika</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Featured Ads Section -->
+    <section class="featured-ads">
+      <div class="section-header">
+        <h2>Izdvojeni oglasi</h2>
+        <button class="btn btn-filter">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="4" y1="21" x2="4" y2="14"></line>
+            <line x1="4" y1="10" x2="4" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="12"></line>
+            <line x1="12" y1="8" x2="12" y2="3"></line>
+            <line x1="20" y1="21" x2="20" y2="16"></line>
+            <line x1="20" y1="12" x2="20" y2="3"></line>
+            <line x1="1" y1="14" x2="7" y2="14"></line>
+            <line x1="9" y1="8" x2="15" y2="8"></line>
+            <line x1="17" y1="16" x2="23" y2="16"></line>
+          </svg>
+          Filtriraj izdvojene oglase
+        </button>
+      </div>
+
+      <div class="ads-grid" id="ads-container">
+        <!-- Ad cards will be inserted here dynamically -->
+      </div>
+
+      <button class="btn btn-more-ads">Prikaži više oglasa</button>
+    </section>
+  </div>
+
+  <footer class="app-footer">
+    <div class="footer-links">
+      <div class="footer-column">
+        <h3>INFORMACIJE I KONTAKT</h3>
+        <ul>
+          <li><a href="#">O nama</a></li>
+          <li><a href="#">Uslovi korištenja</a></li>
+          <li><a href="#">Online sigurnost</a></li>
+          <li><a href="#">Marketing</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>OSTALI LINKOVI</h3>
+        <ul>
+          <li><a href="#">OLX.ba blog</a></li>
+          <li><a href="#">Shopovi</a></li>
+          <li><a href="#">Pridruži se OLX timu</a></li>
+          <li><a href="#">Šta je OLX dostava</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>VAŠ OLX</h3>
+        <ul>
+          <li><a href="#">OLX kredit</a></li>
+          <li><a href="#">Sigurnost i zaštita</a></li>
+          <li><a href="#">Pravila i uslovi korištenja</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <a href="#" class="support-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+          </svg>
+          Podrška korisnicima
+        </a>
+        <div class="app-downloads">
+          <a href="#" class="app-link">
+            <img src="assets/images/appstore.svg" alt="App Store">
+          </a>
+          <a href="#" class="app-link">
+            <img src="assets/images/googlestore.svg" alt="Google Play">
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="copyright">
+      <p>Copyright © 2009 - 2025 Pik d.o.o. Sva prava zadržana.</p>
+    </div>
+  </footer>
+
+  <script src="scripts/app.js"></script>
+</body>
+</html>
