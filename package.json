@@ -1,38 +1,13 @@
 {
   "name": "olx-desktop",
   "version": "1.0.0",
-  "description": "OLX Desktop Application",
   "main": "main.js",
   "scripts": {
-    "start": "electron .",
-    "dev": "NODE_ENV=development electron .",
-    "build": "electron-builder",
-    "pack": "electron-builder --dir"
+    "start": "electron ."
   },
-  "author": "Your Name",
-  "license": "MIT",
-  "devDependencies": {
-    "electron": "^28.1.0",
-    "electron-builder": "^24.9.1"
-  },
-  "dependencies": {},
-  "build": {
-    "appId": "com.yourname.olxdesktop",
-    "productName": "OLX Desktop",
-    "mac": {
-      "category": "public.app-category.lifestyle"
-    },
-    "win": {
-      "target": [
-        "nsis"
-      ]
-    },
-    "linux": {
-      "target": [
-        "AppImage",
-        "deb"
-      ],
-      "category": "Utility"
-    }
+  "dependencies": {
+    "axios": "^1.6.2",
+    "cheerio": "^1.0.0-rc.12",
+    "electron": "^28.1.0"
   }
 }
